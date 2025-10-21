@@ -16,9 +16,7 @@ Use Apache Airflow to automate an end-to-end ML pipeline that clusters Facebook 
 **Outcome:**  
 
 The DAG executed successfully inside the Docker-based Airflow environment after initial troubleshooting.  
-During the first run, I encountered an error in the **`compute_sse_and_silhouette`** task caused by a version mismatch in scikit-learn (`n_init="auto"` not supported in the Airflow image).  
-I inspected the Airflow logs, identified the traceback, and fixed it by explicitly setting `n_init=10` for compatibility.  
-After updating the code, all tasks — data loading, preprocessing, model building, and evaluation — ran successfully and produced the expected outputs.
+During the first run, I encountered an error in the `compute_sse_and_silhouette` task caused by a version mismatch in scikit-learn (`n_init="auto"` not supported in the Airflow image).  
+I inspected the Airflow logs, identified the traceback, and fixed it by explicitly setting `n_init=10` for compatibility. After updating the code, all tasks (data loading, preprocessing, model building, and evaluation) ran successfully and produced the expected outputs.
 
-<img width="899" height="909" alt="image" src="https://github.com/user-attachments/assets/bf8e5130-475f-434b-a072-e1c689e0d1d9" />
-
+<img width="899" height="909" alt="image" src="https://github.com/user-attachments/assets/8d554b78-5a5d-4aaa-88a7-add29782144a" />
