@@ -1,0 +1,23 @@
+[2025-10-21T00:39:56.341+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: harshitha_lab3_kmeans_live.choose_k_and_finalize_model manual__2025-10-21T00:39:22.675751+00:00 [queued]>
+[2025-10-21T00:39:56.355+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: harshitha_lab3_kmeans_live.choose_k_and_finalize_model manual__2025-10-21T00:39:22.675751+00:00 [queued]>
+[2025-10-21T00:39:56.355+0000] {taskinstance.py:1279} INFO - 
+--------------------------------------------------------------------------------
+[2025-10-21T00:39:56.355+0000] {taskinstance.py:1280} INFO - Starting attempt 1 of 1
+[2025-10-21T00:39:56.355+0000] {taskinstance.py:1281} INFO - 
+--------------------------------------------------------------------------------
+[2025-10-21T00:39:56.369+0000] {taskinstance.py:1300} INFO - Executing <Task(PythonOperator): choose_k_and_finalize_model> on 2025-10-21 00:39:22.675751+00:00
+[2025-10-21T00:39:56.411+0000] {standard_task_runner.py:55} INFO - Started process 1819 to run task
+[2025-10-21T00:39:56.420+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'harshitha_lab3_kmeans_live', 'choose_k_and_finalize_model', 'manual__2025-10-21T00:39:22.675751+00:00', '--job-id', '9', '--raw', '--subdir', 'DAGS_FOLDER/***_lab3_live.py', '--cfg-path', '/tmp/tmplgb65hcg']
+[2025-10-21T00:39:56.429+0000] {standard_task_runner.py:83} INFO - Job 9: Subtask choose_k_and_finalize_model
+[2025-10-21T00:39:56.571+0000] {task_command.py:388} INFO - Running <TaskInstance: harshitha_lab3_kmeans_live.choose_k_and_finalize_model manual__2025-10-21T00:39:22.675751+00:00 [running]> on host dadf5dcd63e0
+[2025-10-21T00:39:56.667+0000] {taskinstance.py:1509} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=harshitha
+AIRFLOW_CTX_DAG_ID=harshitha_lab3_kmeans_live
+AIRFLOW_CTX_TASK_ID=choose_k_and_finalize_model
+AIRFLOW_CTX_EXECUTION_DATE=2025-10-21T00:39:22.675751+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2025-10-21T00:39:22.675751+00:00
+[2025-10-21T00:39:57.548+0000] {python.py:177} INFO - Done. Returned value was: {'chosen_k': 4, 'model_path': '/opt/***/working_data/model.pkl', 'labels_path': '/opt/***/working_data/cluster_labels.csv', 'summary_path': '/opt/***/working_data/cluster_summary.csv'}
+[2025-10-21T00:39:57.611+0000] {taskinstance.py:1323} INFO - Marking task as SUCCESS. dag_id=harshitha_lab3_kmeans_live, task_id=choose_k_and_finalize_model, execution_date=20251021T003922, start_date=20251021T003956, end_date=20251021T003957
+[2025-10-21T00:39:57.669+0000] {local_task_job.py:208} INFO - Task exited with return code 0
+[2025-10-21T00:39:57.862+0000] {taskinstance.py:2578} INFO - 1 downstream tasks scheduled from follow-on schedule check

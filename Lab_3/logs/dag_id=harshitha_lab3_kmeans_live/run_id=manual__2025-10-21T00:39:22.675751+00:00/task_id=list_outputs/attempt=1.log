@@ -1,0 +1,40 @@
+[2025-10-21T00:39:59.957+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: harshitha_lab3_kmeans_live.list_outputs manual__2025-10-21T00:39:22.675751+00:00 [queued]>
+[2025-10-21T00:39:59.968+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: harshitha_lab3_kmeans_live.list_outputs manual__2025-10-21T00:39:22.675751+00:00 [queued]>
+[2025-10-21T00:39:59.968+0000] {taskinstance.py:1279} INFO - 
+--------------------------------------------------------------------------------
+[2025-10-21T00:39:59.968+0000] {taskinstance.py:1280} INFO - Starting attempt 1 of 1
+[2025-10-21T00:39:59.968+0000] {taskinstance.py:1281} INFO - 
+--------------------------------------------------------------------------------
+[2025-10-21T00:39:59.983+0000] {taskinstance.py:1300} INFO - Executing <Task(BashOperator): list_outputs> on 2025-10-21 00:39:22.675751+00:00
+[2025-10-21T00:40:00.044+0000] {standard_task_runner.py:55} INFO - Started process 1832 to run task
+[2025-10-21T00:40:00.064+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'harshitha_lab3_kmeans_live', 'list_outputs', 'manual__2025-10-21T00:39:22.675751+00:00', '--job-id', '10', '--raw', '--subdir', 'DAGS_FOLDER/***_lab3_live.py', '--cfg-path', '/tmp/tmpkkmowqtu']
+[2025-10-21T00:40:00.109+0000] {standard_task_runner.py:83} INFO - Job 10: Subtask list_outputs
+[2025-10-21T00:40:00.264+0000] {task_command.py:388} INFO - Running <TaskInstance: harshitha_lab3_kmeans_live.list_outputs manual__2025-10-21T00:39:22.675751+00:00 [running]> on host dadf5dcd63e0
+[2025-10-21T00:40:00.357+0000] {taskinstance.py:1509} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=harshitha
+AIRFLOW_CTX_DAG_ID=harshitha_lab3_kmeans_live
+AIRFLOW_CTX_TASK_ID=list_outputs
+AIRFLOW_CTX_EXECUTION_DATE=2025-10-21T00:39:22.675751+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2025-10-21T00:39:22.675751+00:00
+[2025-10-21T00:40:00.360+0000] {subprocess.py:63} INFO - Tmp dir root location: 
+ /tmp
+[2025-10-21T00:40:00.361+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', "echo '--- Working data ---' && ls -lh /opt/***/working_data && echo 'Chosen k:' && cat /opt/***/working_data/chosen_k.txt || true"]
+[2025-10-21T00:40:00.384+0000] {subprocess.py:86} INFO - Output:
+[2025-10-21T00:40:00.399+0000] {subprocess.py:93} INFO - --- Working data ---
+[2025-10-21T00:40:00.426+0000] {subprocess.py:93} INFO - total 596K
+[2025-10-21T00:40:00.427+0000] {subprocess.py:93} INFO - -rw-r--r-- 1 default root    1 Oct 21 00:39 chosen_k.txt
+[2025-10-21T00:40:00.427+0000] {subprocess.py:93} INFO - -rw-r--r-- 1 default root  14K Oct 21 00:39 cluster_labels.csv
+[2025-10-21T00:40:00.428+0000] {subprocess.py:93} INFO - -rw-r--r-- 1 default root  817 Oct 21 00:39 cluster_summary.csv
+[2025-10-21T00:40:00.428+0000] {subprocess.py:93} INFO - -rw-r--r-- 1 default root  124 Oct 21 00:39 feature_columns.json
+[2025-10-21T00:40:00.428+0000] {subprocess.py:93} INFO - -rw-r--r-- 1 default root  29K Oct 21 00:39 model.pkl
+[2025-10-21T00:40:00.428+0000] {subprocess.py:93} INFO - -rw-r--r-- 1 default root  29K Oct 21 00:39 model_tmp.pkl
+[2025-10-21T00:40:00.429+0000] {subprocess.py:93} INFO - -rw-r--r-- 1 default root 496K Oct 21 00:39 preprocessed.npy
+[2025-10-21T00:40:00.429+0000] {subprocess.py:93} INFO - -rw-r--r-- 1 default root  229 Oct 21 00:39 silhouette.json
+[2025-10-21T00:40:00.429+0000] {subprocess.py:93} INFO - -rw-r--r-- 1 default root  220 Oct 21 00:39 sse.json
+[2025-10-21T00:40:00.430+0000] {subprocess.py:93} INFO - Chosen k:
+[2025-10-21T00:40:00.430+0000] {subprocess.py:93} INFO - 4
+[2025-10-21T00:40:00.431+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-10-21T00:40:00.473+0000] {taskinstance.py:1323} INFO - Marking task as SUCCESS. dag_id=harshitha_lab3_kmeans_live, task_id=list_outputs, execution_date=20251021T003922, start_date=20251021T003959, end_date=20251021T004000
+[2025-10-21T00:40:00.547+0000] {local_task_job.py:208} INFO - Task exited with return code 0
+[2025-10-21T00:40:00.582+0000] {taskinstance.py:2578} INFO - 0 downstream tasks scheduled from follow-on schedule check
