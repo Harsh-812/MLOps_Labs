@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Breast Cancer Classifier</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    /* Minimal, calm, readable */
+    :root { --bg:#f6f7fb; --text:#222; --muted:#666; --card:#fff; --border:#e6e8ef; --accent:#4CAF50; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px; background: var(--bg); color: var(--text);
+           font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
+    .wrap { max-width: 640px; margin: 0 auto; }
+    h1 { font-size: 22px; margin: 0 0 8px; }
+    p.meta { margin: 0 0 20px; color: var(--muted); }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+    form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 6px; color: var(--muted); }
+    .field { display: flex; flex-direction: column; }
+    input[type="number"] { padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px; background: #fff; }
+    .actions { grid-column: 1 / -1; margin-top: 6px; }
+    button { appearance: none; border: 0; border-radius: 6px; background: var(--accent); color: #fff;
+             padding: 10px 14px; font-weight: 600; cursor: pointer; }
+    button:hover { filter: brightness(1.05); }
+    .result { margin-top: 16px; padding: 14px; border: 1px solid var(--border); border-radius: 8px; background: #fafbfd; display: none; }
+    .row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .pred { font-weight: 700; }
+    pre { margin: 10px 0 0; background: #f2f4fa; border: 1px solid var(--border); border-radius: 6px; padding: 10px; overflow: auto; font-size: 13px; }
+    .links { margin-top: 10px; font-size: 14px; color: var(--muted); }
+    .links a { color: inherit; text-decoration: underline; }
+    .error { color: #b00020; margin-top: 10px; display: none; }
+    @media (max-width: 560px) { form { grid-template-columns: 1fr; } }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Breast Cancer Classifier</h1>
+    <p class="meta">Enter the inputs four numeric features. The form posts to <code>/predict</code>.</p>
+
+    <div class="card">
+      <form id="predict-form" autocomplete="off">
+
+        <div class="field">
+          <label for="feature_1">Mean Radius</label>
+          <input type="number" id="feature_1" name="feature_1" step="0.01" required />
+        </div>
+
+        <div class="field">
+          <label for="feature_2">Mean Texture</label>
+          <input type="number" id="feature_2" name="feature_2" step="0.01" required />
+        </div>
+
+        <div class="field">
+          <label for="feature_3">Mean Perimeter</label>
+          <input type="number" id="feature_3" name="feature_3" step="0.01" required />
+        </div>
+
+        <div class="field">
+          <label for="feature_4">Mean Area</label>
+          <input type="number" id="feature_4" name="feature_4" step="0.01" required />
+        </div>
+
+        <div class="actions">
+          <button type="submit">Predict</button>
+          <div class="error" id="err"></div>
+        </div>
+
+      </form>
+
+      <div class="result" id="result">
+        <div class="row">
+          <div class="pred" id="pred">Predicted: —</div>
+          <div class="links">
+            <a href="/metadata" target="_blank">/metadata</a> ·
+            <a href="/healthz" target="_blank">/healthz</a>
+          </div>
+        </div>
+        <pre id="probs">{}</pre>
+      </div>
+    </div>
+  </div>
+
+<script>
+  $('#predict-form').on('submit', function(e){
+    e.preventDefault();
+    $('#err').hide().text('');
+
+    $.ajax({
+      type: 'POST',
+      url: '/predict',
+      data: $(this).serialize(),      // form-encoded; server supports form or JSON
+      dataType: 'json'
+    })
+    .done(function(res){
+      $('#pred').text('Predicted: ' + (res.predicted_class || '—'));
+      $('#probs').text(JSON.stringify(res.probabilities || {}, null, 2));
+      $('#result').show();
+    })
+    .fail(function(xhr){
+      const msg = (xhr.responseJSON && xhr.responseJSON.error) ? xhr.responseJSON.error : 'Request failed';
+      $('#err').text(msg).show();
+      $('#result').hide();
+    });
+  });
+</script>
+</body>
+</html>

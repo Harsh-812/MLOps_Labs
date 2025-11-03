@@ -1,0 +1,49 @@
+# Stage 1: Build & Train the Model
+FROM python:3.9-slim AS model_training
+
+WORKDIR /app
+
+# Copy dependency list and install
+COPY src/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy training script
+COPY src/model_training.py .
+
+# Run model training (produces breast_model.pkl)
+RUN python model_training.py
+
+
+
+# Stage 2: Serve Predictions via Flask
+FROM python:3.9-slim AS serving
+
+WORKDIR /app
+
+# Copy trained model from Stage 1
+COPY --from=model_training /app/breast_model.pkl .
+
+# Copy application code, templates, statics
+COPY src/main.py .
+COPY src/templates ./templates
+COPY src/requirements.txt .
+
+# Install runtime dependencies (Flask, joblib, etc.)
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Install curl for healthcheck
+RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*
+
+# Expose app port
+EXPOSE 4000
+
+ENV MODEL_PATH=breast_model.pkl \
+    MODEL_VERSION=v1 \
+    APP_PORT=4000
+
+# Healthcheck and runtime
+HEALTHCHECK --interval=30s --timeout=5s --retries=3 \
+  CMD curl --fail http://localhost:4000/healthz || exit 1
+
+# Run Flask app via Gunicorn
+CMD ["gunicorn", "-b", "0.0.0.0:4000", "main:app"]
