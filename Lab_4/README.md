@@ -32,9 +32,9 @@ docker compose up --build
 ```
 
 Then open these links in a browser:
-- Home UI → http://localhost:4000
-- Metadata → http://localhost:4000/metadata
-- Health Check → http://localhost:4000/healthz
+- Home UI : http://localhost:4000
+- Metadata : http://localhost:4000/metadata
+- Health Check : http://localhost:4000/healthz
 
 **Option 2 – Without Docker**
 ```bash
@@ -113,10 +113,3 @@ Malignant: 87.6%
 
 ---
 
-### Summary
-
-The lab demonstrates the full Docker workflow:
-
-1. **Train** → containerize → test → push to Docker Hub
-2. **Useful routes** for health and metadata
-3. **Run the app** through Flask and Gunicorn inside a lightweight image
