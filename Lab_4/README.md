@@ -12,11 +12,11 @@ The final setup trains a breast cancer classifier, serves it through a Flask API
 - Dataset: **Breast Cancer Wisconsin** (binary classification problem).  
 - Trained a **Scikit-learn GradientBoostingClassifier** model.  
 - Routes:
-  - `/healthz` → shows if the app and model are running.
-  - `/metadata` → returns dataset, model version, and label info.
+  - `/healthz` : shows if the app and model are running.
+  - `/metadata` : returns dataset, model version, and label info.
 - Updated the web page to collect the first four features of the dataset  
   (**Mean Radius**, **Mean Texture**, **Mean Perimeter**, **Mean Area**).  
-- Used a multi-stage Dockerfile that trains the model and then serves it using Flask + Gunicorn.  
+- Used a multi-stage Dockerfile (first stage trains the model, second serves it with flask) that trains the model and then serves it using Flask + Gunicorn.  
 - Added a Docker **HEALTHCHECK** so the container automatically reports when it is healthy.  
 - Built and ran the container with `docker compose`.  
 - Tagged and pushed the final image to **Docker Hub**:  
